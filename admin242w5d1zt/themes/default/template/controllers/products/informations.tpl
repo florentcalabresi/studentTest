@@ -342,6 +342,23 @@
 		</div>
 	</div>
 	<div class="form-group">
+		<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="short_desc" type="tinymce" multilang="true"}</span></div>
+		<label class="control-label col-lg-2" for="description_short_{$id_lang}">
+			<span class="label-tooltip" data-toggle="tooltip" title="{l s='Appears in the product list(s), and at the top of the product page.'}">
+				Description courte
+			</span>
+		</label>
+		<div class="col-lg-9">
+			{include
+				file="controllers/products/textarea_lang.tpl"
+				languages=$languages
+				input_name='short_desc'
+				class="autoload_rte"
+				input_value=$product->short_desc
+				max=$PS_PRODUCT_SHORT_DESC_LIMIT}
+		</div>
+	</div>
+	<div class="form-group">
 		<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="description" type="tinymce" multilang="true"}</span></div>
 		<label class="control-label col-lg-2" for="description_{$id_lang}">
 			<span class="label-tooltip" data-toggle="tooltip"
