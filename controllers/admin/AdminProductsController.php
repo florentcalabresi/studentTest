@@ -2176,6 +2176,11 @@ class AdminProductsControllerCore extends AdminController
             $_POST['description_short'] = strip_tags(Tools::getValue('description_short'));
         }
 
+        if (Tools::getIsset('short_desc') && $this->isProductFieldUpdated('short_desc')) {
+            $saveShort = Tools::getValue('short_desc');
+            $_POST['short_desc'] = strip_tags(Tools::getValue('short_desc'));
+        }
+
         // Check description short size without html
         $limit = (int)Configuration::get('PS_PRODUCT_SHORT_DESC_LIMIT');
         if ($limit <= 0) {
@@ -2187,6 +2192,18 @@ class AdminProductsControllerCore extends AdminController
                     $this->errors[] = sprintf(
                         Tools::displayError('This %1$s field (%2$s) is too long: %3$d chars max (current count %4$d).'),
                         call_user_func(array($className, 'displayFieldName'), 'description_short'),
+                        $language['name'],
+                        $limit,
+                        Tools::strlen(strip_tags($value))
+                    );
+                }
+            }
+
+            if ($this->isProductFieldUpdated('short_desc', $language['id_lang']) && ($value = Tools::getValue('short_desc_'.$language['id_lang']))) {
+                if (Tools::strlen(strip_tags($value)) > $limit) {
+                    $this->errors[] = sprintf(
+                        Tools::displayError('This %1$s field (%2$s) is too long: %3$d chars max (current count %4$d).'),
+                        call_user_func(array($className, 'displayFieldName'), 'short_desc'),
                         $language['name'],
                         $limit,
                         Tools::strlen(strip_tags($value))
@@ -2211,6 +2228,10 @@ class AdminProductsControllerCore extends AdminController
 
         if ($this->isProductFieldUpdated('description_short') && isset($_POST['description_short'])) {
             $_POST['description_short'] = $saveShort;
+        }
+
+        if ($this->isProductFieldUpdated('short_desc') && isset($_POST['short_desc'])) {
+            $_POST['short_desc'] = $saveShort;
         }
 
         // Check fields validity
@@ -5136,13 +5157,17 @@ class AdminProductsControllerCore extends AdminController
                     die('error: invalid id');
                 }
 
+                die($product);
+
+                /*
+
                 $product->active = 1;
 
                 if ($product->save()) {
                     die($bo_product_url);
                 } else {
                     die('error: saving');
-                }
+                }*/
             }
         }
     }

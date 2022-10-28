@@ -24,5 +24,13 @@
 *  International Registered Trademark & Property of PrestaShop SA
 */
 
-require(dirname(__FILE__).'/config/config.inc.php');
-Dispatcher::getInstance()->dispatch();
+
+
+try{
+    require(dirname(__FILE__).'/config/config.inc.php');
+    Dispatcher::getInstance()->dispatch();
+} 
+catch(Throwable $e) {
+   $trace = $e->getTrace();
+   echo $e->getMessage().' in '.$e->getFile().' on line '.$e->getLine().' called from '.$trace[0]['file'].' on line '.$trace[0]['line'];
+}

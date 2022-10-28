@@ -36,6 +36,10 @@ class Product extends ProductCore
     /** @var string Short description */
     public $description_short;
 
+    
+    /** @var string Description short*/
+    public $short_desc;
+
     /** @var int Quantity available */
     public $quantity = 0;
 
@@ -208,6 +212,7 @@ class Product extends ProductCore
             'id_manufacturer' =>            array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
             'id_supplier' =>                array('type' => self::TYPE_INT, 'validate' => 'isUnsignedId'),
             'reference' =>                    array('type' => self::TYPE_STRING, 'validate' => 'isReference', 'size' => 32),
+            'short_desc' =>            array('type' => self::TYPE_HTML, 'lang' => true, 'validate' => 'isCleanHtml'),
             'supplier_reference' =>        array('type' => self::TYPE_STRING, 'validate' => 'isReference', 'size' => 32),
             'location' =>                    array('type' => self::TYPE_STRING, 'validate' => 'isReference', 'size' => 64),
             'width' =>                        array('type' => self::TYPE_FLOAT, 'validate' => 'isUnsignedFloat'),

@@ -8568,4 +8568,21 @@ div.star.star_hover:after {
 .pointer-box {
   cursor: pointer; }
 
+/* STUDEN TEST */
+.flex {
+  display: flex; 
+}
+.flex.wrap {
+  flex-wrap: wrap; 
+}
+.flex.dcol {
+  flex-direction: column;
+}
+.flex.acenter {
+  align-items: center;
+}
+.flex.jbetween {
+  justify-content: space-between;
+}
+
 /*# sourceMappingURL=global.css.map */
