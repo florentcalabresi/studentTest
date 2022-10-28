@@ -343,7 +343,7 @@
 	</div>
 	<div class="form-group">
 		<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="short_desc" type="tinymce" multilang="true"}</span></div>
-		<label class="control-label col-lg-2" for="description_short_{$id_lang}">
+		<label class="control-label col-lg-2" for="short_desc{$id_lang}">
 			<span class="label-tooltip" data-toggle="tooltip" title="{l s='Appears in the product list(s), and at the top of the product page.'}">
 				Description courte
 			</span>

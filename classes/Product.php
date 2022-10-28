@@ -68,6 +68,10 @@ class ProductCore extends ObjectModel
     /** @var string Short description */
     public $description_short;
 
+    
+    /** @var string Short description */
+    public $short_desc;
+
     /** @var int Quantity available */
     public $quantity = 0;
 
@@ -858,7 +862,7 @@ class ProductCore extends ObjectModel
      */
     public function validateField($field, $value, $id_lang = null, $skip = array(), $human_errors = false)
     {
-        if ($field == 'description_short') {
+        if ($field == 'description_short' || field == 'short_desc') {
             $limit = (int)Configuration::get('PS_PRODUCT_SHORT_DESC_LIMIT');
             if ($limit <= 0) {
                 $limit = 800;
@@ -866,7 +870,7 @@ class ProductCore extends ObjectModel
 
             $size_without_html = Tools::strlen(strip_tags($value));
             $size_with_html = Tools::strlen($value);
-            $this->def['fields']['description_short']['size'] = $limit + $size_with_html - $size_without_html;
+            $this->def['fields'][$field]['size'] = $limit + $size_with_html - $size_without_html;
         }
         return parent::validateField($field, $value, $id_lang, $skip, $human_errors);
     }
